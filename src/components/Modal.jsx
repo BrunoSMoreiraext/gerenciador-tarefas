@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState} from 'react';
-import './modal.css'
+import './Modal.css'
 
 export default function Modal({isOpen, onClose, onSave, tarefaParaEditar}) {
 
