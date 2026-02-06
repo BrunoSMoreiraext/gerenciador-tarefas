@@ -1,0 +1,161 @@
+/* Cores que serão utilzadas no projeto */
+
+:root {
+  --cor-primaria: #00f2ff;
+  --cor-texto: #ffffff;
+  --cor-preto: #000000;
+
+  --cor-fundo-card: rgba(255, 255, 255, 0.03);
+
+  --cor-hover-borda: #00f2ff;
+  --cor-hover-dark: #1a1a1a;
+
+}
+
+button:focus{
+  outline: none;
+}
+
+.tarefa-card {
+
+  background: var(--cor-fundo-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--cor-texto);
+  transition: all 0.3s ease;
+  flex-direction: row;
+  display: flex;
+  gap: 2rem;
+  width: 80%;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  
+}
+
+.tarefa-card:hover {
+  border-color: var(--cor-hover-borda);
+  transform: scale(1.03);
+  
+}
+
+.tarefa-cara {
+  background: var(--cor-primaria);
+  color: var(--cor-preto);
+  border-color: var(--cor-preto);
+}
+
+.tarefa-cara .tarefa-label,
+.tarefa-cara .tarefa-info,
+.tarefa-cara .btn-seta,
+.tarefa-cara .btn-edit,
+.tarefa-cara .btn-trash
+ {
+  color: var(--cor-preto) !important;
+}
+
+
+.tarefa-cara .btn-seta:hover,
+.tarefa-cara .btn-edit:hover,
+.tarefa-cara .btn-trash:hover
+{
+  border-color: var(--cor-hover-dark);
+}
+
+.tarefa-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.tarefa-label {
+  color: var(--cor-primaria);
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.tarefa-info {
+  font-size: 1rem;
+  color: var(--cor-texto);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-weight: 500;
+  
+}
+
+.tarefa-buttons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  flex-direction: row;
+  gap: 0.75rem;
+  
+}
+
+.tarefa-buttons button{
+  background: none;
+  
+}
+
+.tarefa-buttons button:hover,
+.reordenacao button:hover
+{
+  background: none;
+  border-color: var(--cor-primaria);
+  
+}
+
+.tarefa-custo {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: var(--cor-primaria);
+}
+
+.tarefa-acoes button:hover {
+  opacity: 0.7;
+}
+
+.reordenacao{
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+
+}
+
+.reordenacao button{
+
+  background: none;
+
+}
+
+@media (max-width: 600px) {
+  .tarefa-card {
+    display: grid; /* Mudamos de flex para grid no mobile */
+    grid-template-areas: 
+      "reordenar nome"
+      "reordenar data"
+      "reordenar custo"
+      "acoes acoes";
+    grid-template-columns: 50px 1fr;
+    gap: 10px;
+    padding: 15px;
+  }
+}
+
+  .reordenacao { grid-area: reordenar; align-self: center; }
+  .tarefa-nome { grid-area: nome; }
+  .tarefa-data { grid-area: data; }
+  .tarefa-custo { grid-area: custo; }
+  .tarefa-buttons { 
+    grid-area: acoes; 
+    justify-content: center;
+    padding-top: 10px;
+  }
+
+

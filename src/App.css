@@ -1,0 +1,112 @@
+#root {
+  width: 100%;
+  --cor-primaria: #00f2ff;
+  --sombra: rgba(0, 0, 0, 0.5);
+  --Branco: #ffffff;
+  --estruturas: #1a1a1a;
+}
+
+* {
+  box-sizing: border-box; 
+}
+
+body, html {
+  width: 100%;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  padding: 2em;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+  justify-content: flex-start; 
+}
+
+.lista-tarefas{
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 0 7.5rem 0;
+  
+}
+
+header {
+  background-color: var(--estruturas);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -10px 20px var(--sombra);
+  padding: 1.2rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky; 
+  top: 0;
+  z-index: 100;
+  width: 100%;   
+  margin: 0;    
+
+}
+
+header h1 {
+  font-size: 1.5rem;
+  color: var(--Branco);
+  text-transform: uppercase;
+  
+}
+
+footer {
+  
+  background-color: var(--estruturas); 
+  box-shadow: 0 -10px 20px var(--sombra);
+  backdrop-filter: blur(10px);
+  padding: 1.2rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  z-index: 100;
+  position: fixed;
+  bottom: 0;         
+  left: 0;
+}
+
+footer h1 {
+
+  font-size: 1.5rem;
+
+}
+
+.destaque{
+  color: var(--cor-primaria);
+}
+
+button.abre-modal{
+
+  border-radius: 0.625rem;
+  background-color: var(--cor-primaria);
+  color: var(--estruturas);
+
+}
+
+button.abre-modal:hover{
+
+  box-shadow: 0 0 0.9375rem var(--sombra) !important;
+  transform: scale(1.01);
+
+}
+
+@media (max-width: 600px) {
+  
+  .lista-tarefas{
+    padding-bottom: 10rem;
+
+  }
+}
