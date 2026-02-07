@@ -6,12 +6,14 @@ import Modal from './components/Modal';
 import Tarefa from './components/Tarefa';
 import { db } from './firebase';
 import { collection, onSnapshot, addDoc, query, orderBy } from "firebase/firestore";
+import { doc, writeBatch } from "firebase/firestore";
 
 function App() {
   const [tarefas, setTarefas] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tarefaParaEditar, setTarefaParaEditar] = useState(null);
   const totalAcumulado = tarefas.reduce((soma, t) => soma + (Number(t.custo) || 0),0)
+
 
   // ------------------------------------ FUNÇÔES ------------------------------------------//
 
@@ -44,7 +46,7 @@ function App() {
 
     const proximaOrdem = tarefas.length > 0 ? Math.max(...tarefas.map(t => t.ordem)) + 1 : 1;
 
-    // SALVA NO FIREBASE (Isso garante a persistência)
+    // Salva no firebase (Isso garante a persistência)
 
     await addDoc(collection(db, "tarefas"), {
     nome: novaTarefa.nome,
@@ -91,27 +93,29 @@ function App() {
 
   // Função para mover uma tarefa //
 
-  const moverTarefa =(posiçãoAlterar, direcao) =>{
+  const moverTarefa = async(posiçãoAlterar, direcao) =>{
 
-    const novaLista = [...tarefas]; // Criamos uma cópia da nossa lista
+    
     const novaPosicao = posiçãoAlterar + direcao;
 
     if(novaPosicao < 0 || novaPosicao >= tarefas.length) return;
 
-    // capturando o item a ser movido
-    const itemParaMover = novaLista.splice(posiçãoAlterar,1)[0];
-    // Adicionando item a ser movido na posição correta da lista
-    novaLista.splice(novaPosicao, 0, itemParaMover);
+    const batch = writeBatch(db);
+    
+    const tarefaAtual = tarefas[posiçãoAlterar];
+    const tarefaVizinha = tarefas[novaPosicao];
 
-    const listaAtualizada = novaLista.map((t,i) => ({
-      ...t,
-      ordem: i + 1
+    batch.update(doc(db, "tarefas", tarefaAtual.id), {ordem: tarefaVizinha.ordem});
+    batch.update(doc(db, "tarefas", tarefaVizinha.id), {ordem: tarefaAtual.ordem});
 
-    }));
+    try {
+      await batch.commit();
+    } catch (error) {
+      console.error("Erro ao mover tarefa:", error);
+      alert("Erro ao mover tarefa. Por favor, tente novamente.");
+    }
 
-    setTarefas(listaAtualizada);
-
-  }
+  };
 
   return (
 

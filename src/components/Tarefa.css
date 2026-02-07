@@ -148,7 +148,7 @@ button:focus{
   }
 }
 
-  .reordenacao { grid-area: reordenar; align-self: center; }
+  .reordenacao { grid-area: reordenar; align-self: center;}
   .tarefa-nome { grid-area: nome; }
   .tarefa-data { grid-area: data; }
   .tarefa-custo { grid-area: custo; }
