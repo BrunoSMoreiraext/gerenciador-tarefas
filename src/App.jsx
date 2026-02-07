@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Modal from './components/Modal';
 import Tarefa from './components/Tarefa';
 import { db } from './firebase';
-import { collection, onSnapshot, addDoc, query, orderBy } from "firebase/firestore";
-import { doc, writeBatch } from "firebase/firestore";
+import { collection, onSnapshot, addDoc, query, orderBy, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { writeBatch } from "firebase/firestore";
 
 function App() {
   const [tarefas, setTarefas] = useState([]);
@@ -17,9 +15,8 @@ function App() {
 
   // ------------------------------------ FUNÇÔES ------------------------------------------//
 
-  // Função para adicionar uma nova tarefa no nosso array de tarefas
+  // UseEffec que fica observando e recupera os dados do banco para o site
   
-
   useEffect(() => {
 
   const q = query(collection(db, "tarefas"), orderBy("ordem", "asc"));
@@ -34,6 +31,7 @@ function App() {
 
   },[]);
 
+  // Função que adiciona uma nova tarefa ao banco de dados
   const adicionarTarefa = async (novaTarefa) => {
 
     const nomeExiste = tarefas.some(t => t.nome.toLowerCase() === novaTarefa.nome.toLowerCase())
@@ -46,7 +44,7 @@ function App() {
 
     const proximaOrdem = tarefas.length > 0 ? Math.max(...tarefas.map(t => t.ordem)) + 1 : 1;
 
-    // Salva no firebase (Isso garante a persistência)
+    // Salva no firebase 
 
     await addDoc(collection(db, "tarefas"), {
     nome: novaTarefa.nome,
@@ -61,11 +59,17 @@ function App() {
 
   // Função que exclui uma tarefa //
 
-  const excluirTarefa = (id) =>{
+  const excluirTarefa = async(id) =>{
     if(window.confirm("Deseja realmente excluir essa tarefa?")){
-      setTarefas(tarefas.filter(t => t.id !== id))
+      try{
+        await deleteDoc(doc(db, "tarefas", id));
+      }catch(error){
+        console.error("Erro ao excluir tarefa");
+        alert("Erro ao excluir tarefa");
+      }
     }
   }
+
   // Função que abre o modal//
 
   const abrirEdicao = (tarefa) =>{
@@ -75,7 +79,7 @@ function App() {
   }
   // Função que salva as edições de uma tarefa //
 
-  const salvarEdicao = (tarefaEditada) =>{
+  const salvarEdicao = async(tarefaEditada) =>{
 
     const nomeExiste = tarefas.some(t => t.nome.toLowerCase() ===tarefaEditada.nome.toLowerCase() && t.id != tarefaParaEditar.id)
 
@@ -84,12 +88,25 @@ function App() {
     return;
   }
 
-  setTarefas(tarefas.map(t => t.id === tarefaParaEditar.id ? {...t, ...tarefaEditada} : t))
+  try{
+    const tarefaRef = doc(db, "tarefas", tarefaParaEditar.id);
+    
+    await updateDoc(tarefaRef,{
 
-  setIsModalOpen(false);
-  setTarefaParaEditar(null);
+      nome: tarefaEditada.nome,
+      custo: Number(tarefaEditada.custo),
+      data: tarefaEditada.data
+    })
 
-  }
+    setIsModalOpen(false);
+    setTarefaParaEditar(null);
+
+  }catch(error){
+    console.error("Erro ao editar tarefa:", error);
+    alert("Erro ao editar tarefa. Por favor, tente novamente.");
+
+   }
+}
 
   // Função para mover uma tarefa //
 
