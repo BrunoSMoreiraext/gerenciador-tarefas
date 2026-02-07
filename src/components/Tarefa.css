@@ -9,15 +9,13 @@
 
   --cor-hover-borda: #00f2ff;
   --cor-hover-dark: #1a1a1a;
-
 }
 
-button:focus{
+button:focus {
   outline: none;
 }
 
 .tarefa-card {
-
   background: var(--cor-fundo-card);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -33,13 +31,11 @@ button:focus{
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  
 }
 
 .tarefa-card:hover {
   border-color: var(--cor-hover-borda);
   transform: scale(1.03);
-  
 }
 
 .tarefa-cara {
@@ -52,16 +48,13 @@ button:focus{
 .tarefa-cara .tarefa-info,
 .tarefa-cara .btn-seta,
 .tarefa-cara .btn-edit,
-.tarefa-cara .btn-trash
- {
+.tarefa-cara .btn-trash {
   color: var(--cor-preto) !important;
 }
 
-
 .tarefa-cara .btn-seta:hover,
 .tarefa-cara .btn-edit:hover,
-.tarefa-cara .btn-trash:hover
-{
+.tarefa-cara .btn-trash:hover {
   border-color: var(--cor-hover-dark);
 }
 
@@ -84,30 +77,25 @@ button:focus{
   margin-bottom: 1.5rem;
   line-height: 1.5;
   font-weight: 500;
-  
 }
 
-.tarefa-buttons{
+.tarefa-buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 1rem;
   flex-direction: row;
   gap: 0.75rem;
-  
 }
 
-.tarefa-buttons button{
+.tarefa-buttons button {
   background: none;
-  
 }
 
 .tarefa-buttons button:hover,
-.reordenacao button:hover
-{
+.reordenacao button:hover {
   background: none;
   border-color: var(--cor-primaria);
-  
 }
 
 .tarefa-custo {
@@ -120,24 +108,20 @@ button:focus{
   opacity: 0.7;
 }
 
-.reordenacao{
-
+.reordenacao {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
-
 }
 
-.reordenacao button{
-
+.reordenacao button {
   background: none;
-
 }
 
 @media (max-width: 600px) {
   .tarefa-card {
     display: grid; /* Mudamos de flex para grid no mobile */
-    grid-template-areas: 
+    grid-template-areas:
       "reordenar nome"
       "reordenar data"
       "reordenar custo"
@@ -148,14 +132,21 @@ button:focus{
   }
 }
 
-  .reordenacao { grid-area: reordenar; align-self: center;}
-  .tarefa-nome { grid-area: nome; }
-  .tarefa-data { grid-area: data; }
-  .tarefa-custo { grid-area: custo; }
-  .tarefa-buttons { 
-    grid-area: acoes; 
-    justify-content: center;
-    padding-top: 10px;
-  }
-
-
+.reordenacao {
+  grid-area: reordenar;
+  align-self: center;
+}
+.tarefa-nome {
+  grid-area: nome;
+}
+.tarefa-data {
+  grid-area: data;
+}
+.tarefa-custo {
+  grid-area: custo;
+}
+.tarefa-buttons {
+  grid-area: acoes;
+  justify-content: center;
+  padding-top: 10px;
+}

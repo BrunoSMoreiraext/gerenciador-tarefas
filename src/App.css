@@ -7,10 +7,11 @@
 }
 
 * {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   width: 100%;
   overflow-y: auto;
   margin: 0;
@@ -24,18 +25,16 @@ body, html {
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
-  justify-content: flex-start; 
+  min-height: 100vh;
+  justify-content: flex-start;
 }
 
-.lista-tarefas{
-
+.lista-tarefas {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2.5rem 0 7.5rem 0;
-  
 }
 
 header {
@@ -46,24 +45,21 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky; 
+  position: sticky;
   top: 0;
   z-index: 100;
-  width: 100%;   
-  margin: 0;    
-
+  width: 100%;
+  margin: 0;
 }
 
 header h1 {
   font-size: 1.5rem;
   color: var(--Branco);
   text-transform: uppercase;
-  
 }
 
 footer {
-  
-  background-color: var(--estruturas); 
+  background-color: var(--estruturas);
   box-shadow: 0 -10px 20px var(--sombra);
   backdrop-filter: blur(10px);
   padding: 1.2rem 5%;
@@ -74,49 +70,40 @@ footer {
   margin-top: auto;
   z-index: 100;
   position: fixed;
-  bottom: 0;         
+  bottom: 0;
   left: 0;
 }
 
 footer h1 {
-
   font-size: 1.5rem;
-
 }
 
-.destaque{
+.destaque {
   color: var(--cor-primaria);
 }
 
-button.abre-modal{
-
+button.abre-modal {
   border-radius: 0.625rem;
   background-color: var(--cor-primaria);
   color: var(--estruturas);
-
 }
 
-button.abre-modal:hover{
-
+button.abre-modal:hover {
   box-shadow: 0 0 0.9375rem var(--sombra) !important;
   transform: scale(1.01);
-
 }
 
 @media (max-width: 600px) {
-  
-  .lista-tarefas{
+  .lista-tarefas {
     padding-bottom: 10rem;
-
   }
 
-  footer h1{
+  footer h1 {
     font-size: 1.2rem;
     flex-wrap: wrap;
   }
 
-  header h1{
+  header h1 {
     flex-wrap: wrap;
   }
-
 }

@@ -7,6 +7,7 @@ import { collection, onSnapshot, addDoc, query, orderBy, doc, deleteDoc, updateD
 import { writeBatch } from "firebase/firestore";
 
 function App() {
+  
   const [tarefas, setTarefas] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tarefaParaEditar, setTarefaParaEditar] = useState(null);
