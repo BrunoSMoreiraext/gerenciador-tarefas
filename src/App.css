@@ -115,4 +115,8 @@ button.abre-modal:hover{
     flex-wrap: wrap;
   }
 
+  header h1{
+    flex-wrap: wrap;
+  }
+
 }
