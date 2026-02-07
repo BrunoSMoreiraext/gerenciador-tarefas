@@ -11,8 +11,17 @@
   --cor-hover-dark: #1a1a1a;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 button:focus {
   outline: none;
+}
+
+button:active {
+  transform: scale(0.95);
+  opacity: 0.8;
 }
 
 .tarefa-card {
