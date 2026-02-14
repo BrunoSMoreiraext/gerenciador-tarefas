@@ -16,6 +16,7 @@ export default function Modal({ isOpen, onClose, onSave, tarefaParaEditar }) {
     onClose();
   };
 
+  // Observa a tarefa para editar e  se o modal deve estar aberto
   useEffect(() => {
     if (tarefaParaEditar) {
       setNome(tarefaParaEditar.nome);
