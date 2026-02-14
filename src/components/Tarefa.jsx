@@ -9,6 +9,8 @@ export default function Tarefa({
   onEdit,
   onMoveUp,
   onMoveDown,
+  isFirst,
+  isLast,
 }) {
   const destaque = tarefa.custo >= 1000;
 
@@ -23,11 +25,27 @@ export default function Tarefa({
   return (
     <div className={`tarefa-card ${destaque ? "tarefa-cara" : ""}`}>
       <div className="reordenacao">
-        <button onClick={onMoveUp} className="btn-seta">
+        <button
+          onClick={onMoveUp}
+          className="btn-seta"
+          disabled={isFirst}
+          style={{
+            opacity: isFirst ? 0.3 : 1,
+            cursor: isFirst ? "not-allowed" : "pointer",
+          }}
+        >
           <ChevronUp size={20} />
         </button>
 
-        <button onClick={onMoveDown} className="btn-seta">
+        <button
+          onClick={onMoveDown}
+          className="btn-seta"
+          disabled={isLast}
+          Style={{
+            opacity: isLast ? 0.3 : 1,
+            cursor: isLast ? "not-allowed" : "pointer",
+          }}
+        >
           <ChevronDown size={20} />
         </button>
       </div>

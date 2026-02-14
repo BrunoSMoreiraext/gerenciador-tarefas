@@ -156,6 +156,8 @@ function App() {
             onEdit = {() => abrirEdicao(t)}
             onMoveDown={() => moverTarefa(posiçãoAlterar, 1)} // desce uma tarefa em uma posição
             onMoveUp={() => moverTarefa(posiçãoAlterar, -1)} // Sobe a tarefa em uma posição
+            isFirst = {posiçãoAlterar === 0}
+            isLast = {posiçãoAlterar === tarefas.length - 1}
             
           />
 
