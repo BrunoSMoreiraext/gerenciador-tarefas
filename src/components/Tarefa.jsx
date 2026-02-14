@@ -41,7 +41,7 @@ export default function Tarefa({
           onClick={onMoveDown}
           className="btn-seta"
           disabled={isLast}
-          Style={{
+          style={{
             opacity: isLast ? 0.3 : 1,
             cursor: isLast ? "not-allowed" : "pointer",
           }}
