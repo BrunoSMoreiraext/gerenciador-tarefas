@@ -2,6 +2,7 @@
   --cor-primaria: #00f2ff;
   --cinza-claro: #2d2d2d;
   --cor-de-fundo: rgba(0, 0, 0, 0.8);
+  color-scheme: light dark;
 }
 
 .modal-overlay {

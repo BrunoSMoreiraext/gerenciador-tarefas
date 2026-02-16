@@ -40,6 +40,9 @@ button:active {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .tarefa-card:hover {
@@ -75,17 +78,21 @@ button:active {
 }
 
 .tarefa-label {
-  color: var(--cor-primaria);
+  color: var(--cor-primaria) !important;
   margin: 0;
   font-size: 0.875rem;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .tarefa-info {
   font-size: 1rem;
-  color: var(--cor-texto);
+  color: var(--cor-texto) !important;
   margin-bottom: 1.5rem;
   line-height: 1.5;
   font-weight: 500;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .tarefa-buttons {
