@@ -50,6 +50,11 @@ export default function Tarefa({
         </button>
       </div>
 
+      <div className="tarefa-id">
+        <h3 className="tarefa-label">ID</h3>
+        <span className="tarefa-info">{tarefa.id.substring(0, 4)}</span>
+      </div>
+
       <div className="tarefa-nome">
         <h3 className="tarefa-label">Nome</h3>
         <span className="tarefa-info">{tarefa.nome}</span>

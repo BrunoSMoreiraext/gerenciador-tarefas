@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Modal.css";
 
 export default function Modal({ isOpen, onClose, onSave, tarefaParaEditar }) {
   const [nome, setNome] = useState("");
   const [data, setData] = useState("");
   const [preco, setPreco] = useState("");
+  const imputNomeRef = useRef(null);
 
   const Submit = (e) => {
     e.preventDefault();
@@ -18,6 +19,15 @@ export default function Modal({ isOpen, onClose, onSave, tarefaParaEditar }) {
 
   // Observa a tarefa para editar e  se o modal deve estar aberto
   useEffect(() => {
+    
+    // Para adicionar foco do cursor no campo de nome
+    if(isOpen){
+
+        setTimeout(() => {
+          imputNomeRef.current.focus();
+        }, 100);
+    }
+
     if (tarefaParaEditar) {
       setNome(tarefaParaEditar.nome);
       setPreco(tarefaParaEditar.custo);
@@ -38,6 +48,7 @@ export default function Modal({ isOpen, onClose, onSave, tarefaParaEditar }) {
         <form onSubmit={Submit}>
           <input
             type="text"
+            ref={imputNomeRef}
             placeholder="Nome da tarefa"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
@@ -56,9 +67,14 @@ export default function Modal({ isOpen, onClose, onSave, tarefaParaEditar }) {
             type="number"
             placeholder="Preço (R$)"
             value={preco}
-            onChange={(e) => setPreco(e.target.value)}
+            onChange={(e) => {
+              if(e.target.value.length <= 10){  // Tratamento para impedir que usuarios adicionem mais de 10 digitos
+                setPreco(e.target.value)
+               }
+            }}
             required
             min="0"
+            max= "9999999999"
             step="0.01"
             autoComplete="off"
           />

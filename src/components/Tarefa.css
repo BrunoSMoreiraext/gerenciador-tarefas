@@ -5,7 +5,7 @@
   --cor-texto: #ffffff;
   --cor-preto: #000000;
 
-  --cor-fundo-card: rgba(255, 255, 255, 0.03);
+  --cor-fundo-card: #1a1a1a;
 
   --cor-hover-borda: #00f2ff;
   --cor-hover-dark: #1a1a1a;
@@ -26,7 +26,6 @@ button:active {
 
 .tarefa-card {
   background: var(--cor-fundo-card);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 0.75rem;
   padding: 1.5rem;
@@ -138,6 +137,7 @@ button:active {
   .tarefa-card {
     display: grid; /* Mudamos de flex para grid no mobile */
     grid-template-areas:
+      "reordenar id"
       "reordenar nome"
       "reordenar data"
       "reordenar custo"
